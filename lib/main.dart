@@ -5,23 +5,39 @@ void main() {
   runApp(MyApp());
 }
 
+List<PersonModel> persons = [
+  person1,
+  person2,
+  person3,
+  person1,
+  person2,
+  person3,
+  person1,
+  person2,
+  person3,
+  person1,
+  person2,
+  person3
+];
+
 class MyApp extends StatelessWidget {
-
-  PersonModel person1 = PersonModel(
-    name: 'Juan Moreno',
-    description: 'Ejemplo de modelo',
-    iconLeft: Icons.person,
-    iconRight: Icons.message,
-    nickName: 'morjuax'
-  );
-
   // error nickname data === null
 
   Widget customListTile(PersonModel person) {
     return ListTile(
       leading: Icon(person.iconLeft),
-      trailing: Icon(person.iconRight),
-      title: Text(person.nickName),
+      trailing: SizedBox(
+        width: 100.0,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(person.iconRight),
+            SizedBox(width: 8.0,),
+            Icon(Icons.call)],
+        ),
+      ),
+      title: Text(person.name),
       subtitle: Text(person.description),
     );
   }
@@ -46,9 +62,15 @@ class MyApp extends StatelessWidget {
             ],
             title: Text('Matanga app'),
           ),
-          body: Container(
-            child: customListTile(person1),
+          body: ListView(
+            children: [
+              for (int i = 0; i < persons.length; i++)
+                customListTile(persons[i])
+            ],
           ),
         ));
   }
 }
+
+// Column, ListView, row
+// Stack, grid
