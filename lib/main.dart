@@ -13,16 +13,23 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Container(
-        color: Colors.blue,
-        child: Center(
-          child: Text(
-            'Mi primer widget',
-            textAlign: TextAlign.center,
-            style: TextStyle(decoration: TextDecoration.none),
-          ),
-        )
-      ),
+      home: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+        ),
+        appBar: AppBar(
+          title: Text('Matanga app'),
+        ),
+        body: Container(
+            child: Center(
+              child: Text(
+                'Mi primer widget',
+                textAlign: TextAlign.center,
+                style: TextStyle(decoration: TextDecoration.none),
+              ),
+            )
+        ),
+      )
     );
   }
 }
