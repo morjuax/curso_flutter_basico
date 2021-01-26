@@ -42,6 +42,31 @@ class MyApp extends StatelessWidget {
     );
   }
 
+  Widget customButton () => GestureDetector(
+    onTap: (){
+      print('Boomm..!!');
+    },
+    onLongPress: () {
+      print('presionado largo del boton');
+    },
+    child:  Container(
+      height: 60.0,
+      width: double.infinity,
+      margin: EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(8.0),
+      decoration: BoxDecoration(
+          border: Border.all(color: Colors.red),
+          borderRadius: BorderRadius.circular(8.0)
+      ),
+      child: Center(
+        child: Text('Agregar Contacto', style: TextStyle(
+            color: Colors.red,
+            fontSize: 20.0
+        ),),
+      ),
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -57,17 +82,24 @@ class MyApp extends StatelessWidget {
           appBar: AppBar(
             actions: [
               IconButton(icon: Icon(Icons.menu), onPressed: () {}),
-              // IconButton(icon: Icon(Icons.image), onPressed: () {}),
+              IconButton(icon: Icon(Icons.image), onPressed: () {}),
               // IconButton(icon: Icon(Icons.message), onPressed: () {})
             ],
             title: Text('Matanga app'),
           ),
-          body: ListView(
+          body: Column(
             children: [
-              for (int i = 0; i < persons.length; i++)
-                customListTile(persons[i])
+              customButton(),
+              Expanded(
+                  child: ListView(
+                    children: [
+                      for (int i = 0; i < persons.length; i++)
+                        customListTile(persons[i])
+                    ],
+                  ),
+              )
             ],
-          ),
+          )
         ));
   }
 }
