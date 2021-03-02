@@ -24,9 +24,10 @@ class _CustomButtonState extends State<CustomButton> {
         // setState(() {
         //   this.titleButton = 'New title button';
         // });
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return FormContactPage();
-        }));
+        // Navigator.push(context, MaterialPageRoute(builder: (context) {
+        //   return FormContactPage();
+        // }));
+        Navigator.pushNamed(context, 'formContact');
       },
       onLongPress: () {
         print('presionado largo del boton');
