@@ -18,12 +18,74 @@ List<PersonModel> persons = [
   person3
 ];
 
-class HomePage extends StatelessWidget {
+List<Widget> pages = [
+  Container(
+    child: Column(
+      children: [
+        CustomButton(),
+        // buttons(),
+        Expanded(
+          child: ListView(
+            children: [
+              for (int i = 0; i < persons.length; i++)
+                CustomListTile(
+                  person: persons[i],
+                )
+            ],
+          ),
+        )
+      ],
+    ),
+  ),
+  Container(color: Colors.blue)
+];
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   String title = 'Matanga app';
+
+  int picker;
+
+  @override
+  void initState() {
+    super.initState();
+    picker = 0;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: Drawer(
+          child: Column(
+            children: [
+              DrawerHeader(
+                  padding: EdgeInsets.zero,
+                  child: Container(color: Theme.of(context).primaryColor)),
+              ListTile(
+                title: Text('Inicio'),
+                onTap: () {
+                  Navigator.pop(context);
+                  setState(() {
+                    picker = 0;
+                  });
+                },
+              ),
+              ListTile(
+                title: Text('Segunda Pantalla'),
+                onTap: () {
+                  Navigator.pop(context);
+                  setState(() {
+                    picker = 1;
+                  });
+                },
+              ),
+            ],
+          ),
+        ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             print('Button float pressed!');
@@ -38,23 +100,6 @@ class HomePage extends StatelessWidget {
           ],
           title: Text(this.title),
         ),
-        body: Column(
-          children: [
-            CustomButton(),
-            // buttons(),
-            Expanded(
-              child: ListView(
-                children: [
-                  for (int i = 0; i < persons.length; i++)
-                    CustomListTile(
-                      person: persons[i],
-                    )
-                ],
-              ),
-            )
-          ],
-        ));
+        body: pages[picker]);
   }
 }
-
-
