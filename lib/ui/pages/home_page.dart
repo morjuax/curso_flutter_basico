@@ -28,9 +28,13 @@ List<Widget> pages = [
           child: ListView(
             children: [
               for (int i = 0; i < persons.length; i++)
-                CustomListTile(
-                  person: persons[i],
-                )
+                Dismissible(
+                    background: Container(color: Colors.red),
+                    onDismissed: (direction) => persons.removeAt(i),
+                    key: Key(i.toString()),
+                    child: CustomListTile(
+                      person: persons[i],
+                    ))
             ],
           ),
         )
