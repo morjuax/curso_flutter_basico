@@ -1,6 +1,7 @@
 import 'package:curso_flutter_basico/controllers/main_controller.dart';
 import 'package:curso_flutter_basico/controllers/themeController.dart';
 import 'package:curso_flutter_basico/ui/pages/form_contact_page.dart';
+import 'package:curso_flutter_basico/ui/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -14,7 +15,7 @@ class CustomButton extends StatelessWidget {
           titleButton.value = 'New title notifier';
           pressButton();
           _controller.changeTheme();
-          // Navigator.pushNamed(context, 'formContact');
+          Navigator.pushNamed(context, 'formContact');
         },
         onLongPress: () {
           print('presionado largo del boton');

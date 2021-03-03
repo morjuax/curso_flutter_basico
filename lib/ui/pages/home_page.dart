@@ -25,17 +25,17 @@ List<Widget> pages = [
         CustomButton(),
         // buttons(),
         Expanded(
-          child: ListView(
-            children: [
-              for (int i = 0; i < persons.length; i++)
-                Dismissible(
-                    background: Container(color: Colors.red),
-                    onDismissed: (direction) => persons.removeAt(i),
-                    key: Key(i.toString()),
-                    child: CustomListTile(
-                      person: persons[i],
-                    ))
-            ],
+          child: ListView.builder(
+            itemCount: persons.length,
+            itemBuilder: (context, picker){
+              return  Dismissible(
+                  background: Container(color: Colors.red),
+                  onDismissed: (direction) => persons.removeAt(picker),
+                  key: Key(picker.toString()),
+                  child: CustomListTile(
+                    person: persons[picker],
+                  ));
+            },
           ),
         )
       ],
@@ -43,6 +43,8 @@ List<Widget> pages = [
   ),
   Container(color: Colors.blue)
 ];
+
+GlobalKey<ScaffoldState> homeKey = GlobalKey<ScaffoldState>();
 
 class HomePage extends StatefulWidget {
   @override
@@ -63,6 +65,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: homeKey,
         drawer: Drawer(
           child: Column(
             children: [
@@ -72,6 +75,8 @@ class _HomePageState extends State<HomePage> {
               ListTile(
                 title: Text('Inicio'),
                 onTap: () {
+                  homeKey.currentState
+                      .showSnackBar(SnackBar(content: Text('I am snackBar')));
                   Navigator.pop(context);
                   setState(() {
                     picker = 0;
@@ -90,11 +95,17 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            print('Button float pressed!');
+        floatingActionButton: Builder(
+          builder: (BuildContext context) {
+            return FloatingActionButton(
+              onPressed: () {
+                Scaffold.of(context)
+                    .showSnackBar(SnackBar(content: Text('I am snackBar')));
+                print('Button float pressed!');
+              },
+              child: Icon(Icons.add),
+            );
           },
-          child: Icon(Icons.add),
         ),
         appBar: AppBar(
           actions: [
