@@ -1,46 +1,9 @@
-import 'package:curso_flutter_basico/models/person_model.dart';
-import 'package:curso_flutter_basico/ui/widgets/custom_buttons.dart';
-import 'package:curso_flutter_basico/ui/widgets/custom_listtile.dart';
+import 'package:curso_flutter_basico/ui/pages/contactListPage.dart';
 import 'package:flutter/material.dart';
 
-List<PersonModel> persons = [
-  person1,
-  person2,
-  person3,
-  person1,
-  person2,
-  person3,
-  person1,
-  person2,
-  person3,
-  person1,
-  person2,
-  person3
-];
 
 List<Widget> pages = [
-  Container(
-    child: Column(
-      children: [
-        CustomButton(),
-        // buttons(),
-        Expanded(
-          child: ListView.builder(
-            itemCount: persons.length,
-            itemBuilder: (context, picker){
-              return  Dismissible(
-                  background: Container(color: Colors.red),
-                  onDismissed: (direction) => persons.removeAt(picker),
-                  key: Key(picker.toString()),
-                  child: CustomListTile(
-                    person: persons[picker],
-                  ));
-            },
-          ),
-        )
-      ],
-    ),
-  ),
+  ContactListPage(),
   Container(color: Colors.blue)
 ];
 
