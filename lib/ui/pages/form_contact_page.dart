@@ -39,23 +39,44 @@ class _FormContactPageState extends State<FormContactPage> {
               children: <Widget>[
                 TextFormField(
                   decoration: InputDecoration(
-                    labelText: 'Name'
+                    hintText: 'Name',
+                    prefixIcon: Icon(Icons.person),
+                    labelText: 'Ej. Juan Moreno',
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Theme.of(context).primaryColor)
+                    )
                   ),
                   onChanged: (value) => print(_nameController.text),
                   controller: _nameController,
                 ),
                 SizedBox(height: 8.0),
-                TextFormField(
-                  decoration: InputDecoration(
-                      labelText: 'Nickname'
+                Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor.withOpacity(0.3),
+                    borderRadius: BorderRadius.circular(8.0),
+                    border: Border.all(
+                      color: Theme.of(context).primaryColor
+                    )
                   ),
-                  onChanged: (value) => print(_nickNameController.text),
-                  controller: _nickNameController,
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                        hintText: 'Nickname',
+                        prefixIcon: Icon(Icons.person),
+                        labelText: 'Nickname',
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide.none
+                        )
+                    ),
+                    onChanged: (value) => print(_nickNameController.text),
+                    controller: _nickNameController,
+                  ),
                 ),
                 SizedBox(height: 8.0),
                 TextFormField(
                   decoration: InputDecoration(
-                      labelText: 'Phone number'
+                      hintText: 'Phone number',
+                      prefixIcon: Icon(Icons.phone),
+                      labelText: 'Ej. (+569) 37415576'
                   ),
                   onChanged: (value) => print(_phoneNumberController.text),
                   controller: _phoneNumberController,
