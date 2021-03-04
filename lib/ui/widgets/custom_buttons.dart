@@ -12,9 +12,9 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
         onTap: () {
-          titleButton.value = 'New title notifier';
-          pressButton();
-          _controller.changeTheme();
+          // titleButton.value = 'New title notifier';
+          // pressButton();
+          // _controller.changeTheme();
           Navigator.pushNamed(context, 'formContact');
         },
         onLongPress: () {
