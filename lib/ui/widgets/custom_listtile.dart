@@ -16,7 +16,6 @@ class CustomListTile extends StatelessWidget {
           content: 'New Content'
         ));
       },
-      leading: Icon(person.iconLeft),
       trailing: SizedBox(
         width: 100.0,
         child: Row(
@@ -31,8 +30,11 @@ class CustomListTile extends StatelessWidget {
           ],
         ),
       ),
+      leading: CircleAvatar(child: Text(
+        person.name[0].toUpperCase()
+      )),
       title: Text(person.name),
-      subtitle: Text(person.description),
+      subtitle: Text(person.nickName),
     );
   }
 }

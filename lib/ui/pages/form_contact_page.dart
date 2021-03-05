@@ -1,3 +1,5 @@
+import 'package:curso_flutter_basico/controllers/contactListController.dart';
+import 'package:curso_flutter_basico/models/person_model.dart';
 import 'package:flutter/material.dart';
 
 GlobalKey<FormState> formContactKey = GlobalKey<FormState>();
@@ -12,6 +14,9 @@ class _FormContactPageState extends State<FormContactPage> {
   TextEditingController _nameController;
   TextEditingController _nickNameController;
   TextEditingController _phoneNumberController;
+
+  ContactListController _controller = ContactListController.instance;
+  PersonModel _personModel = PersonModel();
 
   @override
   void initState() {
@@ -46,7 +51,7 @@ class _FormContactPageState extends State<FormContactPage> {
                       borderSide: BorderSide(color: Theme.of(context).primaryColor)
                     )
                   ),
-                  onChanged: (value) => print(_nameController.text),
+                  onChanged: (value) => _personModel.name = value,
                   controller: _nameController,
                 ),
                 SizedBox(height: 8.0),
@@ -67,7 +72,7 @@ class _FormContactPageState extends State<FormContactPage> {
                             borderSide: BorderSide.none
                         )
                     ),
-                    onChanged: (value) => print(_nickNameController.text),
+                    onChanged: (value) => _personModel.nickName = value,
                     controller: _nickNameController,
                   ),
                 ),
@@ -78,8 +83,17 @@ class _FormContactPageState extends State<FormContactPage> {
                       prefixIcon: Icon(Icons.phone),
                       labelText: 'Ej. (+569) 37415576'
                   ),
-                  onChanged: (value) => print(_phoneNumberController.text),
+                  onChanged: (value) => _personModel.phone = value,
                   controller: _phoneNumberController,
+                ),
+                SizedBox(height: 32),
+                RaisedButton(
+                  color: Theme.of(context).primaryColor,
+                  onPressed: (){
+                    _controller.contacts.value = List.from(_controller.contacts.value)..add(_personModel);
+                    Navigator.pop(context);
+                  },
+                  child: Text('Add Contact', style: TextStyle(color: Colors.white),),
                 )
               ],
             ),

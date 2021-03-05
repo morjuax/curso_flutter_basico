@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class PersonModel {
-  final IconData iconLeft;
-  final IconData iconRight;
-  final String name;
-  final String description;
-  final String nickName;
+  IconData iconLeft;
+  IconData iconRight;
+  String name;
+  String description;
+  String nickName;
+  String phone;
 
-  PersonModel({this.description, this.iconLeft, this.iconRight, this.name, this.nickName});
+
+  PersonModel({this.description, this.iconLeft, this.iconRight, this.name, this.nickName, this.phone});
 }
 
 
